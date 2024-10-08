@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+interface Shape {
+    double area();
+    double perimeter();
+}
+
+class Rectangle implements Shape {
+   //..... YOUR CODE STARTS HERE .....
+   private double length;
+   private double breath;
+   
+   public Rectangle(double length, double breath){
+       this.length = length;
+       this.breath = breath;
+       
+   }
+   public double area(){
+       return length * breath;
+   }
+   public double perimeter(){
+       return 2 * (length + breath);
+   }
+   
+   //..... YOUR CODE ENDS HERE .....
+}
+
+class Circle implements Shape {
+   //..... YOUR CODE STARTS HERE .....
+   private double radius;
+   
+   public Circle(double radius){
+       this.radius = radius;
+   }
+   public double area(){
+       return Math.PI * radius *radius;
+   }
+   
+   public double perimeter(){
+       return 2 * Math.PI * radius;
+   }
+   
+   //..... YOUR CODE ENDS HERE .....
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String shapeType = scanner.next();
+        Shape shape;
+
+        if (shapeType.equals("Rectangle")) {
+            double length = scanner.nextDouble();
+            double width = scanner.nextDouble();
+            shape = new Rectangle(length, width);
+        } else if (shapeType.equals("Circle")) {
+            double radius = scanner.nextDouble();
+            shape = new Circle(radius);
+        } else {
+            System.out.println("Invalid shape type");
+            return;
+        }
+
+        System.out.println("Area: " + shape.area());
+        System.out.println("Perimeter: " + shape.perimeter());
+    }
+}
