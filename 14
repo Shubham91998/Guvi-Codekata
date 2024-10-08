@@ -1,0 +1,114 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Book {
+   //..... YOUR CODE STARTS HERE .....
+   
+   private String title;
+   private String author;
+   private boolean isBorrowed;
+   public Book(String title, String author){
+       this.title = title;
+       this.author = author;
+       this.isBorrowed = false;
+   }
+   
+   public boolean borrow(){
+       if (!isBorrowed){
+           isBorrowed = true;
+           return true;
+       }
+       return false;
+   }
+   public void returnBook(){
+       isBorrowed = false;
+   }
+   public boolean isBorrowed(){
+       return isBorrowed;
+   }
+   
+   public String getTitle(){
+       return title;
+   }
+   //..... YOUR CODE ENDS HERE .....
+}
+
+class Library {
+   //..... YOUR CODE STARTS HERE .....
+   
+   private ArrayList<Book> books;
+   public Library(){
+       books = new ArrayList<>();
+       
+   }
+   
+   public void addBook(String title, String author){
+       books.add(new Book(title, author));
+       System.out.println("Book added");
+   }
+   
+   public void borrowBook(String title){
+       for(Book book : books){
+           if (book.getTitle().equals(title)){
+               if (book.borrow()){
+                   System.out.println("Book borrowed");
+               }
+               else{
+                   System.out.println("Book not available");
+               }
+               return;
+           }
+       }
+       System.out.println("Book not available");
+   }
+   public void returnBook(String title){
+       for (Book book : books){
+           if (book.getTitle().equals(title)){
+               book.returnBook();
+               System.out.println("Book returned");
+               return;
+           }
+       }
+       System.out.println("Book not found");
+   }
+   //..... YOUR CODE ENDS HERE .....
+}
+
+public class Main {
+    public static void main(String[] args) {
+        //..... YOUR CODE STARTS HERE .....
+   
+   Scanner sc = new Scanner(System.in);
+   Library library = new Library();
+   int operationsCount = sc.nextInt();
+   sc.nextLine();
+   
+   for (int i=0; i<operationsCount; i++){
+       String operation = sc.nextLine();
+       String[] operationPart = operation.split(" ", 3);
+       
+       switch (operationPart[0]){
+           case "add":
+               String title = operationPart[1];
+               String author = operationPart[2];
+               library.addBook(title, author);
+               break;
+               
+            case "borrow":
+                title = operationPart[1];
+                library.borrowBook(title);
+                break;
+                
+            case "return":
+                title = operationPart[1];
+                library.returnBook(title);
+                break;
+            default:
+                System.out.println("Invalid operation");
+                break;
+       }
+   }
+   
+        //..... YOUR CODE ENDS HERE .....
+    }
+}
