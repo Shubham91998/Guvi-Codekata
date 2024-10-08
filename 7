@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        //..... YOUR CODE STARTS HERE .....
+        
+        Scanner sc = new Scanner(System.in);
+        int numVoters = sc.nextInt();
+        int numCandidates = sc.nextInt();
+        int numVotes = sc.nextInt();
+        if (numVotes > numVoters) {
+            System.out.println("Number of votes exceeds number of registered voters!");
+            return;
+        }
+        for (int i = 0; i < numVotes; i++){
+            int candidateID = sc.nextInt();
+            
+            if (numCandidates >= 1 && candidateID <= numCandidates){
+                System.out.println("VALID");
+            }else{
+                System.out.println("INVALID");
+            }
+        }
+        sc.close();
+        //..... YOUR CODE ENDS HERE .....
+    }
+}
