@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        //..... YOUR CODE STARTS HERE .....
+        while (true) {
+            int n = scanner.nextInt();
+            if (n == -1){
+                break;
+            }
+            for (int i=0; i<n; i++){
+                int num = scanner.nextInt();
+                if (num >=90 && num <= 100){
+                    System.out.println("Excellent");
+                }
+                else if (num >=75 && num <= 89){
+                    System.out.println("Good");
+                }
+                else if (num >=50 && num <= 74){
+                    System.out.println("Average");
+                }
+                else if (num >=35 && num <= 49){
+                    System.out.println("Pass");
+                }
+                else if (num >=0 && num <= 34){
+                    System.out.println("Fail");
+                }
+                else{
+                    System.out.println("Invalid Number");
+                }
+
+            }
+        }
+        
+        
+        //..... YOUR CODE ENDS HERE .....
+        scanner.close();
+    }
+}
