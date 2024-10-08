@@ -1,47 +1,73 @@
 import java.util.Scanner;
 
+interface Employee {
+    double calculateSalary();
+    String getDetails();
+}
+
+class FullTimeEmployee implements Employee {
+   //..... YOUR CODE STARTS HERE .....
+   
+   private String name;
+   private double monthlySalary;
+   
+   public FullTimeEmployee(String name, double monthlySalary){
+       this.name = name;
+       this.monthlySalary = monthlySalary;
+   }
+   public double calculateSalary(){
+       return monthlySalary;
+   }
+   public String getDetails(){
+       return "Name: " + name + ", Salary: " + calculateSalary();
+   }
+   //..... YOUR CODE ENDS HERE .....
+}
+
+class PartTimeEmployee implements Employee {
+   //..... YOUR CODE STARTS HERE .....
+   private String name;
+   private double hourlyRate;
+   private int hoursWorked;
+   
+   public PartTimeEmployee(String name, double hourlyRate, int hoursWorked){
+       this.name = name;
+       this.hourlyRate = hourlyRate;
+       this.hoursWorked = hoursWorked;
+   }
+   
+   public double calculateSalary(){
+       return hourlyRate * hoursWorked;
+   }
+   
+   public String getDetails(){
+       return "Name: " + name + ", Salary: " + calculateSalary();
+   }
+   
+   
+   //..... YOUR CODE ENDS HERE .....
+}
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.next();
-        int age = scanner.nextInt();
+        String employeeType = scanner.next();
+        Employee employee;
 
-        Person person = new Person();
-        person.setName(name);
-        person.setAge(age);
-
-        if (age > 0) {
-            System.out.println("Name: " + person.getName());
-            System.out.println("Age: " + person.getAge());
+        if (employeeType.equals("FullTimeEmployee")) {
+            String name = scanner.next();
+            double monthlySalary = scanner.nextDouble();
+            employee = new FullTimeEmployee(name, monthlySalary);
+        } else if (employeeType.equals("PartTimeEmployee")) {
+            String name = scanner.next();
+            double hourlyRate = scanner.nextDouble();
+            int hoursWorked = scanner.nextInt();
+            employee = new PartTimeEmployee(name, hourlyRate, hoursWorked);
+        } else {
+            System.out.println("Invalid employee type");
+            return;
         }
-    }
-}
 
-class Person {
-    //..... YOUR CODE STARTS HERE .....
-    private String name;
-    private int age;
-    
-    public void setName(String name){
-        this.name = name;
+        System.out.println(employee.getDetails());
     }
-    public void setAge(int age){
-        if (age > 0){
-            this.age = age;
-        }
-        else{
-            System.out.println("Invalid age");
-        }
-        
-    }
-    public String getName(){
-        return name;
-    }
-    public int getAge(){
-        return age;
-    }
-
-    
-    
-    //..... YOUR CODE ENDS HERE .....
 }
